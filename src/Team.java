@@ -1,9 +1,16 @@
 
-public class Team {
+public class Team implements Comparable<Team>{
 	
 	private String teamName;
 	private int elo;
 	private int teamID;
+	
+	public Team(String teamName, int elo)
+	{
+		this.teamName = teamName;
+		this.elo = elo;
+		
+	}
 	
 	public String getTeamName()
 	{
@@ -33,6 +40,22 @@ public class Team {
 	public void setTeamID(int teamID)
 	{
 		this.teamID = teamID;
+	}
+
+	@Override
+	public int compareTo(Team o) {
+	
+		if (this.getElo() > o.getElo())
+		{
+			return 1;
+		}
+		
+		if (this.getElo() < o.getElo())
+		{
+			return -1;
+		}
+		
+		return 0;
 	}
 
 }

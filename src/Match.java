@@ -4,6 +4,12 @@ public class Match {
 	private Team firstTeam, secondTeam, result;
 	private int firstTeamScore, secondTeamScore, matchID;
 	
+	public Match(Team firstTeam, Team secondTeam)
+	{
+		this.firstTeam = firstTeam;
+		this.secondTeam = secondTeam;
+	}
+	
 	public Team getFirstTeam() 
 	{
 		return firstTeam;
