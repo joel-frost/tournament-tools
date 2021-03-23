@@ -2,9 +2,16 @@
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		showGUI();
+				
 		
 
+	}
+	
+	public static void showGUI()
+	{
+		// GUI code will go here
 	}
 
 }
