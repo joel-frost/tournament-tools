@@ -27,17 +27,33 @@ public class Main {
 		teamsToSchedule.add(teamG);
 		teamsToSchedule.add(teamH);
 		
-		Schedule sched = new Schedule(teamsToSchedule);
+		Schedule firstRound = new Schedule(teamsToSchedule);
 		
-		ArrayList<Match> matches = sched.closestElo();
+		//ArrayList<Match> matches = sched.closestElo();
+		ArrayList<Match> matches = firstRound.bestWithWorst();
 		
+		System.out.println("Round 1");
 		int matchNo = 1;
 		for (Match m : matches)
 		{
 			System.out.println("Match " + matchNo + " " + m.getFirstTeam().getTeamName() + " vs " +  m.getSecondTeam().getTeamName() + "\n\n");
 			matchNo++;
+			m.setResult(m.getFirstTeam());
 		}
-				
+		
+		ArrayList<Team> winners = firstRound.getWinners();
+		
+		Schedule secondRound = new Schedule(winners);
+		matches = secondRound.inOrder();
+		
+		System.out.println("Round 2 \n");
+		matchNo = 1;
+		for (Match m : matches)
+		{
+			System.out.println("Match " + matchNo + " " + m.getFirstTeam().getTeamName() + " vs " +  m.getSecondTeam().getTeamName() + "\n\n");
+			matchNo++;
+			m.setResult(m.getFirstTeam());
+		}				
 	}
 	
 	public static void showGUI()

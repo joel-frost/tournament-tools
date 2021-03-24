@@ -1,0 +1,13 @@
+[
+    {
+        "teamName": "TeamA",
+        "elo": 50,
+        "teamID": 1
+    },
+    
+    {
+        "teamName": "TeamB",
+        "elo": 54,
+        "teamID": 2
+    }
+]
