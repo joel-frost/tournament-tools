@@ -70,6 +70,18 @@ public class Match {
 		this.matchID = matchID;
 	}
 	
+	public void resolveMatch()
+	{
+		if (firstTeamScore > secondTeamScore)
+		{
+			result = firstTeam;
+		}
+		
+		else if (secondTeamScore > firstTeamScore)
+		{
+			result = secondTeam;
+		}
+	}
 	
 
 }
