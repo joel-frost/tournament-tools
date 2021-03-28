@@ -1,13 +1,23 @@
+import java.util.Random;
 
 public class Match {
 	
 	private Team firstTeam, secondTeam, result;
-	private int firstTeamScore, secondTeamScore, matchID;
+	private int firstTeamScore, secondTeamScore;
+	private String matchID;
+	Random random = new Random();
 	
+	public Match()
+	{
+		firstTeam = new Team("Unscheduled");
+		secondTeam = new Team("Unscheduled");
+		matchID = String.valueOf(random.nextInt(1000));
+	}
 	public Match(Team firstTeam, Team secondTeam)
 	{
 		this.firstTeam = firstTeam;
 		this.secondTeam = secondTeam;
+		matchID = String.valueOf(random.nextInt(1000));
 	}
 	
 	public Team getFirstTeam() 
@@ -60,12 +70,12 @@ public class Match {
 		this.secondTeamScore = secondTeamScore;
 	}
 	
-	public int getMatchID() 
+	public String getMatchID() 
 	{
 		return matchID;
 	}
 	
-	public void setMatchID(int matchID) 
+	public void setMatchID(String matchID) 
 	{
 		this.matchID = matchID;
 	}

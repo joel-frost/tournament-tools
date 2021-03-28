@@ -11,13 +11,33 @@ public class Schedule {
 		this.teamsToSchedule = teamsToSchedule;
 	}
 	
+	public ArrayList<Team> getTeamsToSchedule() 
+	{
+		return teamsToSchedule;
+	}
+
+	public void setTeamsToSchedule(ArrayList<Team> teamsToSchedule) 
+	{
+		this.teamsToSchedule = teamsToSchedule;
+	}
+
+	public ArrayList<Match> getMatches() 
+	{
+		return matches;
+	}
+
+	public void setMatches(ArrayList<Match> matches) 
+	{
+		this.matches = matches;
+	}
+	
 	// Check if a knockout tournament is valid with given number of teams
-	private boolean checkValid()
+	public boolean checkValid() throws InvalidNumTeamsException
 	{
 		int numTeams = teamsToSchedule.size();
 		if (numTeams < 2)
 		{
-			return false;
+			throw new InvalidNumTeamsException();
 		}
 		
 		while(numTeams % 2 == 0)
@@ -30,18 +50,13 @@ public class Schedule {
 			return true;
 		}
 		
-		return false;
+		throw new InvalidNumTeamsException();
 	}
 	
 	public ArrayList<Match> closestElo()
 	{
 		matches = new ArrayList<>();
-		
-		if (!checkValid())
-		{
-			return null;
-		}
-		
+			
 		Collections.sort(teamsToSchedule, Collections.reverseOrder());
 		
 		for (int i = 0; i < teamsToSchedule.size(); i+=2)
@@ -56,11 +71,6 @@ public class Schedule {
 	public ArrayList<Match> bestWithWorst()
 	{
 		matches = new ArrayList<>();
-		
-		if (!checkValid())
-		{
-			return null;
-		}
 		
 		Collections.sort(teamsToSchedule, Collections.reverseOrder());
 		
@@ -82,11 +92,6 @@ public class Schedule {
 	{
 		matches = new ArrayList<>();
 		
-		if (!checkValid())
-		{
-			return null;
-		}
-		
 		Collections.shuffle(teamsToSchedule);
 		
 		for (int i = 0; i < teamsToSchedule.size(); i+=2)
@@ -101,11 +106,6 @@ public class Schedule {
 	public ArrayList<Match> inOrder()
 	{
 		matches = new ArrayList<>();
-		
-		if (!checkValid())
-		{
-			return null;
-		}
 		
 		for (int i = 0; i < teamsToSchedule.size(); i+=2)
 		{

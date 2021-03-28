@@ -1,15 +1,21 @@
 
-public class Team implements Comparable<Team>{
+public class Team implements Comparable<Team>
+{
 	
 	private String teamName;
 	private int elo;
 	private int teamID;
 	
+	public Team(String teamName)
+	{
+		this.teamName = teamName;
+		elo = 0;
+	}
+	
 	public Team(String teamName, int elo)
 	{
 		this.teamName = teamName;
-		this.elo = elo;
-		
+		this.elo = elo;		
 	}
 	
 	public String getTeamName()
