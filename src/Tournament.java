@@ -8,8 +8,7 @@ public class Tournament {
 	
 	// TODO: This probably isn't the best place to check validity
 	public Tournament(int ID, ArrayList<Team> toSchedule)
-	{
-		tournamentID = ID;
+	{		tournamentID = ID;
 		Schedule round1 = new Schedule(toSchedule);
 		try
 		{
@@ -18,7 +17,8 @@ public class Tournament {
 		
 		catch (InvalidNumTeamsException e)
 		{
-			System.out.println("test");
+			System.err.print("Invalid number of teams");
+			// TODO: Cut off team to make this valid
 		}
 		
 		tournamentSchedules.add(round1);
@@ -63,7 +63,9 @@ public class Tournament {
 	
 	
 	// TODO: Remove hardcoded scheduling method
-	public String generateBrackets()
+	// TODO: Give potential teams for next brackets
+	// TODO: Auto finalise matches
+	public String generateBrackets()	
 	{
 		String bracketString = "";
 		int roundsToSchedule = numRounds;

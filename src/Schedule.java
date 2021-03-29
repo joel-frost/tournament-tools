@@ -34,6 +34,9 @@ public class Schedule {
 	// Check if a knockout tournament is valid with given number of teams
 	public boolean checkValid() throws InvalidNumTeamsException
 	{
+		
+		// TODO: Pre-bracket if too many teams
+		
 		int numTeams = teamsToSchedule.size();
 		if (numTeams < 2)
 		{
@@ -127,6 +130,8 @@ public class Schedule {
 		
 		return winners;
 	}
+	
+	// TODO: Split bracket in middle, top and bottom both play middle teams
 	
 
 }
