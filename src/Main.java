@@ -1,3 +1,4 @@
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Main {
@@ -26,7 +27,7 @@ public class Main {
 		Team teamO = new Team("Team O", 65);
 		Team teamP = new Team("Team P", 15);
 		
-		//Team errorTeam = new Team("Testing", 50);
+		Team errorTeam = new Team("Testing", 50);
 		
 		teamsToSchedule.add(teamA);
 		teamsToSchedule.add(teamB);
@@ -45,7 +46,7 @@ public class Main {
 		teamsToSchedule.add(teamO);
 		teamsToSchedule.add(teamP);
 		
-		//teamsToSchedule.add(errorTeam);
+		teamsToSchedule.add(errorTeam);
 		
 		
 		// Schedule Testing:
@@ -72,7 +73,18 @@ public class Main {
 		 */
 		
 		// Tournament Testing:		
-		Tournament t = new Tournament(1, teamsToSchedule);
+		//Tournament t = new Tournament(1, teamsToSchedule);
+		
+		Tournament t = new Tournament(2);
+		try 
+		{
+			t.importFromFile(Paths.get("./data/teams.json"));
+		} 
+		catch (DataLoadingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		System.out.println(t.generateBrackets());
 	}
 	

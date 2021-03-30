@@ -45,7 +45,11 @@ public class GUI extends JFrame {
 			public void actionPerformed(ActionEvent e)
 			{
 				filePath = getFilePath();
-				debugTextField.setText(filePath.toString());
+				if (filePath != null)
+				{
+					debugTextField.setText(filePath.toString());
+				}
+				
 				//TODO: Parse this loaded file
 								
 			}

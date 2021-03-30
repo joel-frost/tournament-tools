@@ -7,7 +7,43 @@
     
     {
         "teamName": "TeamB",
-        "elo": 54,
+        "elo": 56,
         "teamID": 2
+    },
+
+    {
+        "teamName": "TeamC",
+        "elo": 23,
+        "teamID": 3
+    },
+
+    {
+        "teamName": "TeamD",
+        "elo": 98,
+        "teamID": 4
+    },
+
+    {
+        "teamName": "TeamE",
+        "elo": 76,
+        "teamID": 5
+    },
+
+    {
+        "teamName": "TeamF",
+        "elo": 34,
+        "teamID": 6
+    },
+
+    {
+        "teamName": "TeamG",
+        "elo": 12,
+        "teamID": 7
+    },
+
+    {
+        "teamName": "TeamH",
+        "elo": 76,
+        "teamID": 8
     }
 ]

@@ -18,6 +18,13 @@ public class Team implements Comparable<Team>
 		this.elo = elo;		
 	}
 	
+	public Team(String teamName, int elo, int teamID)
+	{
+		this.teamName = teamName;
+		this.elo = elo;		
+		this.teamID = teamID;
+	}
+	
 	public String getTeamName()
 	{
 		return teamName;

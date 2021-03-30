@@ -1,35 +1,36 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
+
+import org.json.*;
+
 
 public class Tournament {
 	
 	private int tournamentID;
 	private int numRounds;
 	private ArrayList<Schedule> tournamentSchedules = new ArrayList<>();
+	private ArrayList<Team> toSchedule = new ArrayList<>();
 	
-	// TODO: This probably isn't the best place to check validity
 	public Tournament(int ID, ArrayList<Team> toSchedule)
-	{		tournamentID = ID;
-		Schedule round1 = new Schedule(toSchedule);
-		try
-		{
-			round1.checkValid();
-		}
-		
-		catch (InvalidNumTeamsException e)
-		{
-			System.err.print("Invalid number of teams");
-			// TODO: Cut off team to make this valid
-		}
-		
-		tournamentSchedules.add(round1);
-		numRounds = calculateRounds(round1);
-			
+	{		
+		tournamentID = ID;
+		this.toSchedule = toSchedule;
+
+	}
+	
+	public Tournament(int ID)
+	{
+		tournamentID = ID;
 	}
 			
 	
 	public int getTournamentID() 
 	{
 		return tournamentID;
+		
 	}
 
 	public void setTournamentID(int tournamentID) 
@@ -65,13 +66,29 @@ public class Tournament {
 	// TODO: Remove hardcoded scheduling method
 	// TODO: Give potential teams for next brackets
 	// TODO: Auto finalise matches
+	// TODO: Refactor in to smaller methods	
 	public String generateBrackets()	
 	{
+		Schedule round1 = new Schedule(toSchedule);
+		try
+		{
+			round1.checkValid();
+		}
+		
+		catch (InvalidNumTeamsException e)
+		{
+			System.err.print("Invalid number of teams");
+			// TODO: Cut off team to make this valid
+		}
+		
+		tournamentSchedules.add(round1);
+		numRounds = calculateRounds(round1);
+		
 		String bracketString = "";
 		int roundsToSchedule = numRounds;
 		
-		ArrayList<Match> round1 = tournamentSchedules.get(0).closestElo();
-		int bracketSize = round1.size() * 2;
+		ArrayList<Match> round1Matches = tournamentSchedules.get(0).closestElo();
+		int bracketSize = round1Matches.size() * 2;
 		
 		roundsToSchedule = numRounds - 1;
 		
@@ -104,10 +121,7 @@ public class Tournament {
 				
 			}
 		}
-		
-		
-		
-		
+
 		return bracketString;
 	}
 	
@@ -118,6 +132,42 @@ public class Tournament {
 
 	public int getNumRounds() {
 		return numRounds;
+	}
+	
+	public void importFromFile(Path p) throws DataLoadingException
+	{
+		try
+		{
+			if (p == null)
+			{
+				throw new DataLoadingException();
+			}
+			BufferedReader br = Files.newBufferedReader(p);
+			String json = "";
+			String line = "";
+			
+			while((line = br.readLine()) != null)
+			{
+				json += line;
+			} 
+			
+			br.close();
+			
+			JSONArray root = new JSONArray(json);
+			
+			for (int i = 0; i < root.length(); i++)
+			{
+				JSONObject currentTeam = root.getJSONObject(i);
+				Team t = new Team(currentTeam.getString("teamName"), currentTeam.getInt("elo"), currentTeam.getInt("teamID"));
+				toSchedule.add(t);	
+			}
+			
+		}
+		
+		catch (IOException | JSONException e)
+		{
+			throw new DataLoadingException();
+		}
 	}
 
 }
