@@ -13,6 +13,16 @@ public class Tournament {
 	private int numRounds;
 	private ArrayList<Schedule> tournamentSchedules = new ArrayList<>();
 	private ArrayList<Team> toSchedule = new ArrayList<>();
+	private SchedulingMethods schedulingMethod = SchedulingMethods.IN_ORDER;
+	
+	
+	public Tournament(int ID, ArrayList<Team> toSchedule, SchedulingMethods schedulingMethod)
+	{		
+		tournamentID = ID;
+		this.toSchedule = toSchedule;
+		this.schedulingMethod = schedulingMethod;
+
+	}
 	
 	public Tournament(int ID, ArrayList<Team> toSchedule)
 	{		
@@ -38,6 +48,16 @@ public class Tournament {
 		this.tournamentID = tournamentID;
 	}
 	
+	public SchedulingMethods getSchedulingMethod() 
+	{
+		return schedulingMethod;
+	}
+
+	public void setSchedulingMethod(SchedulingMethods schedulingMethod) 
+	{
+		this.schedulingMethod = schedulingMethod;
+	}
+
 	private int calculateRounds(Schedule sched)
 	{
 		int rounds = 0;
@@ -62,8 +82,6 @@ public class Tournament {
 		return -1;		
 	}
 	
-	
-	// TODO: Remove hardcoded scheduling method
 	// TODO: Give potential teams for next brackets
 	// TODO: Auto finalise matches
 	// TODO: Refactor in to smaller methods	
@@ -87,7 +105,25 @@ public class Tournament {
 		String bracketString = "";
 		int roundsToSchedule = numRounds;
 		
-		ArrayList<Match> round1Matches = tournamentSchedules.get(0).closestElo();
+		ArrayList<Match> round1Matches;
+		
+		switch (schedulingMethod)
+		{
+		case CLOSEST_ELO:
+			round1Matches = tournamentSchedules.get(0).closestElo();
+			break;
+		case BEST_WITH_WORST:
+			round1Matches = tournamentSchedules.get(0).bestWithWorst();
+			break;
+		case RANDOM_MATCHES:
+			round1Matches = tournamentSchedules.get(0).randomMatches();
+			break;
+		case IN_ORDER:
+		default:
+			round1Matches = tournamentSchedules.get(0).inOrder();
+			break;
+		}
+		
 		int bracketSize = round1Matches.size() * 2;
 		
 		roundsToSchedule = numRounds - 1;
