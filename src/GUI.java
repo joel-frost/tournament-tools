@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.filechooser.*;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -26,21 +27,23 @@ public class GUI extends JFrame {
 		JButton browseButton = new JButton("Select File");		
 		Container mainCont = main.getContentPane();
 		JTextField debugTextField = new JTextField();
+		final String[] TOURNAMENT_TYPES = {"In Order", "Closest ELO", "Best with Worst", "Random"}; 
+		JComboBox<String> tournamentSelectionBox = new JComboBox<String>(TOURNAMENT_TYPES);
+		JButton createTournamentButton = new JButton("Create Tournament");
 		
 		debugTextField.setPreferredSize(new Dimension(300,20));
-		main.setSize(new Dimension(700,300));
+		main.setSize(new Dimension(550, 300));
 		
-		mainCont.setLayout(new GridBagLayout());
-		GridBagConstraints constraints = new GridBagConstraints();
+		mainCont.setLayout(new FlowLayout());
 		
-		constraints.gridx = 1;
-		constraints.gridy = 1;
-		mainCont.add(browseButton, constraints);
+		mainCont.add(browseButton);
 		
-		constraints.gridx = 1;
-		constraints.gridy = 0;
-		mainCont.add(debugTextField, constraints);
+		mainCont.add(debugTextField);
+
+		mainCont.add(tournamentSelectionBox);
 		
+		mainCont.add(createTournamentButton);
+			
 		browseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
@@ -52,6 +55,16 @@ public class GUI extends JFrame {
 				
 				//TODO: Parse this loaded file
 								
+			}
+						
+		});
+		
+		createTournamentButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				JOptionPane.showMessageDialog(null, "Load Tournament");
+				
+				//TODO: Load tournament based on parsed file
 			}
 						
 		});
