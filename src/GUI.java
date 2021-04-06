@@ -32,7 +32,7 @@ public class GUI extends JFrame {
 		debugTextField.setPreferredSize(new Dimension(300,20));
 		main.setSize(new Dimension(550, 300));
 		
-		mainCont.setLayout(new FlowLayout());
+		mainCont.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 15));
 		
 		mainCont.add(browseButton);
 		
