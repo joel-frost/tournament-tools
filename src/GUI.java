@@ -54,10 +54,7 @@ public class GUI extends JFrame {
 				if (filePath != null)
 				{
 					debugTextField.setText(filePath.toString());
-				}
-				
-				//TODO: Parse this loaded file
-								
+				}				
 			}
 						
 		});
