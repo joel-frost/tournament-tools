@@ -3,6 +3,8 @@ import javax.swing.filechooser.*;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -23,6 +25,9 @@ public class GUI extends JFrame {
 
 		JFrame main = new JFrame("Tournament Tools");
 		JFrame bracket = new JFrame("Bracket");
+		Image icon = Toolkit.getDefaultToolkit().getImage("data/Tournament_Bracket_Logo.png"); 
+		main.setIconImage(icon);
+		bracket.setIconImage(icon);
 		JTextArea bracketText = new JTextArea();
 		Container bracketCont = bracket.getContentPane();
 		JButton browseButton = new JButton("Select File");		
