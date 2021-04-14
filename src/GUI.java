@@ -28,13 +28,13 @@ public class GUI extends JFrame {
 		JButton browseButton = new JButton("Select File");		
 		Container mainCont = main.getContentPane();
 		JTextField debugTextField = new JTextField();
-		final String[] TOURNAMENT_TYPES = {"In Order", "Closest ELO", "Best with Worst", "Random"}; 
+		final String[] TOURNAMENT_TYPES = {"IN_ORDER", "CLOSEST_ELO", "BEST_WITH_WORST", "RANDOM"}; 
 		JComboBox<String> tournamentSelectionBox = new JComboBox<String>(TOURNAMENT_TYPES);
 		JButton createTournamentButton = new JButton("Create Tournament");
 		
 		bracketText.setPreferredSize(new Dimension(500, 500));
 		debugTextField.setPreferredSize(new Dimension(300,20));
-		main.setSize(new Dimension(550, 300));
+		main.setSize(new Dimension(570, 300));
 		bracket.setSize(new Dimension(550, 500));
 		
 		mainCont.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 15));
@@ -71,7 +71,9 @@ public class GUI extends JFrame {
 				
 				else
 				{
-					Tournament t = new Tournament(1);
+					String selected = (String) tournamentSelectionBox.getSelectedItem();
+					SchedulingMethods schedMethod = SchedulingMethods.valueOf(selected);					
+					Tournament t = new Tournament(1, schedMethod);
 					try 
 					{
 						t.importFromFile(filePath);

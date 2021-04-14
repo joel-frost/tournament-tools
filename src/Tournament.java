@@ -31,6 +31,13 @@ public class Tournament {
 
 	}
 	
+	public Tournament(int ID, SchedulingMethods schedulingMethod)
+	{		
+		tournamentID = ID;
+		this.schedulingMethod = schedulingMethod;
+
+	}
+	
 	public Tournament(int ID)
 	{
 		tournamentID = ID;
