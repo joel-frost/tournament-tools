@@ -143,7 +143,7 @@ public class Tournament {
 			
 			for (int i = 0; i < bracketSize; i++)
 			{
-				Team team = new Team("Unscheduled");
+				Team team = new Team("TBD");
 				placeholderTeams.add(team);
 			}
 			
