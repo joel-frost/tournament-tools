@@ -3,12 +3,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-
 import org.json.*;
-
 
 public class Tournament {
 	
+	private String tournamentName;
 	private int tournamentID;
 	private int numRounds;
 	private ArrayList<Schedule> tournamentSchedules = new ArrayList<>();
@@ -41,6 +40,16 @@ public class Tournament {
 	public Tournament(int ID)
 	{
 		tournamentID = ID;
+	}
+	
+	public String getTournamentName()
+	{
+		return tournamentName;
+	}
+	
+	public void setTournamentName(String tournamentName)
+	{
+		this.tournamentName = tournamentName;
 	}
 			
 	
@@ -168,6 +177,21 @@ public class Tournament {
 		return bracketString;
 	}
 	
+	public ArrayList<Match> getScheduledMatches()
+	{
+		ArrayList<Match> scheduledMatches = new ArrayList<Match>();
+		
+		for (int i = 0; i < tournamentSchedules.size(); i++)
+		{
+			for (int j = 0; j < tournamentSchedules.get(i).getMatches().size(); j++)
+			{
+				scheduledMatches.add(tournamentSchedules.get(i).getMatches().get(j));
+			}
+		}
+		
+		return scheduledMatches;		
+	}
+	
 	public void showLeaderboard()
 	{
 		//TODO
@@ -196,12 +220,20 @@ public class Tournament {
 			
 			br.close();
 			
-			JSONArray root = new JSONArray(json);
+			JSONObject root = new JSONObject(json);
 			
-			for (int i = 0; i < root.length(); i++)
+			String name = root.getString("tournamentName");
+			String scedulingMethod = root.getString("scheduleType");
+			
+			setTournamentName(name);
+			schedulingMethod = SchedulingMethods.valueOf(scedulingMethod);
+			
+			JSONArray teams = root.getJSONArray("teams");
+			
+			for (int i = 0; i < teams.length(); i++)
 			{
-				JSONObject currentTeam = root.getJSONObject(i);
-				Team t = new Team(currentTeam.getString("teamName"), currentTeam.getInt("elo"), currentTeam.getInt("teamID"));
+				JSONObject currentTeam = teams.getJSONObject(i);
+				Team t = new Team(currentTeam.getString("teamName"), currentTeam.getInt("elo"), currentTeam.getInt("ID"));
 				toSchedule.add(t);	
 			}
 			

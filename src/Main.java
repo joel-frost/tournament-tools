@@ -27,7 +27,7 @@ public class Main {
 		Team teamO = new Team("Team O", 65);
 		Team teamP = new Team("Team P", 15);
 		
-		Team errorTeam = new Team("Testing", 50);
+		//Team errorTeam = new Team("Testing", 50);
 		
 		teamsToSchedule.add(teamA);
 		teamsToSchedule.add(teamB);
@@ -46,7 +46,7 @@ public class Main {
 		teamsToSchedule.add(teamO);
 		teamsToSchedule.add(teamP);
 		
-		teamsToSchedule.add(errorTeam);
+		//teamsToSchedule.add(errorTeam);
 		
 		
 		// Schedule Testing:
