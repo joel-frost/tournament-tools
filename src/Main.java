@@ -78,14 +78,15 @@ public class Main {
 		Tournament t = new Tournament(2);
 		try 
 		{
-			t.importFromFile(Paths.get("./data/teams.json"));
+			t.importFromFile(Paths.get("./data/jsonexample.json"));
 		} 
 		catch (DataLoadingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		System.out.println(t.generateBrackets());
+		t.generateBrackets();
+		t.generatePDF();
 	}
 	
 	public static void showGUI()

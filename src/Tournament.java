@@ -4,6 +4,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import org.json.*;
+import com.itextpdf.kernel.pdf.PdfDocument; 
+import com.itextpdf.kernel.pdf.PdfWriter; 
+import com.itextpdf.layout.Document; 
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.property.HorizontalAlignment;
+import com.itextpdf.layout.property.TextAlignment;  
 
 public class Tournament {
 	
@@ -13,6 +19,7 @@ public class Tournament {
 	private ArrayList<Schedule> tournamentSchedules = new ArrayList<>();
 	private ArrayList<Team> toSchedule = new ArrayList<>();
 	private SchedulingMethods schedulingMethod = SchedulingMethods.IN_ORDER;
+	private String generatedTournament;
 	
 	
 	public Tournament(int ID, ArrayList<Team> toSchedule, SchedulingMethods schedulingMethod)
@@ -173,7 +180,8 @@ public class Tournament {
 				
 			}
 		}
-
+		
+		generatedTournament = bracketString;
 		return bracketString;
 	}
 	
@@ -244,5 +252,38 @@ public class Tournament {
 			throw new DataLoadingException();
 		}
 	}
+	
+	public void generatePDF()
+	{
+		String dest = "data/export.pdf";
+		try
+		{
+			PdfWriter writer = new PdfWriter(dest);
+			PdfDocument pdf = new PdfDocument(writer);
+			Document document = new Document(pdf);
+			
+			Paragraph para1 = new Paragraph(tournamentName);
+			Paragraph para2 = new Paragraph(generatedTournament);
+			para1.setBold();
+			para1.setFontSize(16);
+			para2.setFontSize(14);
+			para1.setTextAlignment(TextAlignment.CENTER);
+			para1.setPaddingBottom(50);
+			para2.setTextAlignment(TextAlignment.CENTER);
+			document.add(para1);
+			document.add(para2);
+			
+			document.close();
+		}
+		
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
 
 }

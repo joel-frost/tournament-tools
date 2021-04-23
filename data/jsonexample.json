@@ -1,0 +1,50 @@
+{
+   "tournamentName":"Test Tournament File",
+   "tournamentSize":"8",
+   "scheduleType": "IN_ORDER",
+   "teams":[
+      {
+         "teamName":"Team Red",
+         "elo":60,
+         "ID":1
+      },
+      {
+         "teamName":"Team Blue",
+         "elo":38,
+         "ID":2
+      },
+      {
+         "teamName":"Team Green",
+         "elo":50,
+         "ID":3
+      },
+      {
+         "teamName":"Team Yellow",
+         "elo":45,
+         "ID":4
+      },
+      {
+         "teamName":"Team Orange",
+         "elo":55,
+         "ID":5
+      },
+      {
+         "teamName":"Team Purple",
+         "elo":50,
+         "ID":6
+      },
+      {
+         "teamName":"Team Pink",
+         "elo":40,
+         "ID":7
+      },
+      {
+         "teamName":"Team Cyan",
+         "elo":62,
+         "ID":8
+      }
+   ],
+   "matches":[
+      
+   ]
+}
