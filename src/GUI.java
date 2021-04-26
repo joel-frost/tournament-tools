@@ -14,6 +14,7 @@ import java.io.*;
 import java.nio.file.*;
 
 
+@SuppressWarnings("serial")
 public class GUI extends JFrame {
 	
 	static Path filePath;
