@@ -13,6 +13,7 @@ public class Match {
 		secondTeam = new Team("Unscheduled");
 		matchID = String.valueOf(random.nextInt(1000));
 	}
+	
 	public Match(Team firstTeam, Team secondTeam)
 	{
 		this.firstTeam = firstTeam;

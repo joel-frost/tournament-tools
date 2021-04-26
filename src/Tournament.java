@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,7 +9,6 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter; 
 import com.itextpdf.layout.Document; 
 import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;  
 
 public class Tournament {
@@ -20,6 +20,7 @@ public class Tournament {
 	private ArrayList<Team> toSchedule = new ArrayList<>();
 	private SchedulingMethods schedulingMethod = SchedulingMethods.IN_ORDER;
 	private String generatedTournament;
+	private JSONObject cachedJSON;
 	
 	
 	public Tournament(int ID, ArrayList<Team> toSchedule, SchedulingMethods schedulingMethod)
@@ -105,8 +106,6 @@ public class Tournament {
 		return -1;		
 	}
 	
-	// TODO: Give potential teams for next brackets
-	// TODO: Auto finalise matches
 	// TODO: Refactor in to smaller methods	
 	public String generateBrackets()	
 	{
@@ -200,10 +199,6 @@ public class Tournament {
 		return scheduledMatches;		
 	}
 	
-	public void showLeaderboard()
-	{
-		//TODO
-	}
 
 	public int getNumRounds() {
 		return numRounds;
@@ -229,6 +224,7 @@ public class Tournament {
 			br.close();
 			
 			JSONObject root = new JSONObject(json);
+			cachedJSON = root;
 			
 			String name = root.getString("tournamentName");
 			String scedulingMethod = root.getString("scheduleType");
@@ -281,6 +277,36 @@ public class Tournament {
 			e.printStackTrace();
 		}
 		
+		
+	}
+	
+	public void exportJSON()
+	{
+		String dest = "data/export.json";
+		JSONArray matches = cachedJSON.getJSONArray("matches");
+		
+		for (Match m : getScheduledMatches())
+		{
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("matchID", m.getMatchID());
+			jsonObject.put("firstTeam", m.getFirstTeam().getTeamName());
+			jsonObject.put("secondTeam", m.getSecondTeam().getTeamName());
+			jsonObject.put("result", "");
+			
+			matches.put(jsonObject);
+		}
+		
+		 try 
+		 {
+	         FileWriter file = new FileWriter(dest);
+	         file.write(cachedJSON.toString(2));
+	         file.close();
+	     } 
+		 catch (IOException e) 
+		 {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+		 }
 		
 	}
 	
