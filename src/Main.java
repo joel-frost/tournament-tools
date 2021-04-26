@@ -86,8 +86,8 @@ public class Main {
 		}
 		
 		t.generateBrackets();
-		t.generatePDF();
-		t.exportJSON();
+		t.generatePDF("data/export.pdf");
+		t.exportJSON("data/export.json");
 	}
 	
 	public static void showGUI()

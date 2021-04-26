@@ -249,9 +249,9 @@ public class Tournament {
 		}
 	}
 	
-	public void generatePDF()
+	public void generatePDF(String dest)
 	{
-		String dest = "data/export.pdf";
+		
 		try
 		{
 			PdfWriter writer = new PdfWriter(dest);
@@ -280,9 +280,8 @@ public class Tournament {
 		
 	}
 	
-	public void exportJSON()
+	public void exportJSON(String dest)
 	{
-		String dest = "data/export.json";
 		JSONArray matches = cachedJSON.getJSONArray("matches");
 		
 		for (Match m : getScheduledMatches())
