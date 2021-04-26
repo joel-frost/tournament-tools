@@ -106,7 +106,6 @@ public class Tournament {
 		return -1;		
 	}
 	
-	// TODO: Refactor in to smaller methods	
 	public String generateBrackets()	
 	{
 		Schedule round1 = new Schedule(toSchedule);
@@ -118,7 +117,6 @@ public class Tournament {
 		catch (InvalidNumTeamsException e)
 		{
 			System.err.print("Invalid number of teams");
-			// TODO: Cut off team to make this valid
 		}
 		
 		tournamentSchedules.add(round1);
@@ -230,7 +228,7 @@ public class Tournament {
 			String scedulingMethod = root.getString("scheduleType");
 			
 			setTournamentName(name);
-			schedulingMethod = SchedulingMethods.valueOf(scedulingMethod);
+			//schedulingMethod = SchedulingMethods.valueOf(scedulingMethod);
 			
 			JSONArray teams = root.getJSONArray("teams");
 			
@@ -303,7 +301,6 @@ public class Tournament {
 	     } 
 		 catch (IOException e) 
 		 {
-	         // TODO Auto-generated catch block
 	         e.printStackTrace();
 		 }
 		

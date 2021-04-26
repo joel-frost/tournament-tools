@@ -42,7 +42,7 @@ public class GUI extends JFrame {
 		Container mainCont = main.getContentPane();
 		JTextField loadFileTextField = new JTextField();
 		JTextField saveFileTextField = new JTextField();
-		final String[] TOURNAMENT_TYPES = {"IN_ORDER", "CLOSEST_ELO", "BEST_WITH_WORST", "RANDOM"}; 
+		final String[] TOURNAMENT_TYPES = {"IN_ORDER", "CLOSEST_ELO", "BEST_WITH_WORST", "RANDOM_MATCHES"}; 
 		JComboBox<String> tournamentSelectionBox = new JComboBox<String>(TOURNAMENT_TYPES);
 		JButton createTournamentButton = new JButton("Create Tournament");
 		JButton pdfSaveButton = new JButton("Save as PDF");

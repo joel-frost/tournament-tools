@@ -81,7 +81,6 @@ public class Main {
 			t.importFromFile(Paths.get("./data/jsonexample.json"));
 		} 
 		catch (DataLoadingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
