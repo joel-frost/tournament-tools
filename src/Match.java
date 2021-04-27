@@ -9,8 +9,8 @@ public class Match {
 	
 	public Match()
 	{
-		firstTeam = new Team("Unscheduled");
-		secondTeam = new Team("Unscheduled");
+		firstTeam = new Team("TBD");
+		secondTeam = new Team("TBD");
 		matchID = String.valueOf(random.nextInt(1000));
 	}
 	
@@ -81,18 +81,4 @@ public class Match {
 		this.matchID = matchID;
 	}
 	
-	public void resolveMatch()
-	{
-		if (firstTeamScore > secondTeamScore)
-		{
-			result = firstTeam;
-		}
-		
-		else if (secondTeamScore > firstTeamScore)
-		{
-			result = secondTeam;
-		}
-	}
-	
-
 }

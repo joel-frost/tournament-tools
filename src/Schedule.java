@@ -117,17 +117,4 @@ public class Schedule {
 		return matches;		
 	}
 	
-	public ArrayList<Team> getWinners()
-	{
-		ArrayList<Team> winners = new ArrayList<>();
-		
-		for (Match m : matches)
-		{
-			winners.add(m.getResult());
-		}
-		
-		return winners;
-	}
-	
-
 }

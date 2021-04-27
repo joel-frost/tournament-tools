@@ -81,6 +81,10 @@ public class Tournament {
 	{
 		this.schedulingMethod = schedulingMethod;
 	}
+	
+	public int getNumRounds() {
+		return numRounds;
+	}
 
 	private int calculateRounds(Schedule sched)
 	{
@@ -121,10 +125,6 @@ public class Tournament {
 		
 		tournamentSchedules.add(round1);
 		numRounds = calculateRounds(round1);
-		
-		String bracketString = "";
-		int roundsToSchedule = numRounds;
-		
 		ArrayList<Match> round1Matches;
 		
 		switch (schedulingMethod)
@@ -144,9 +144,8 @@ public class Tournament {
 			break;
 		}
 		
-		int bracketSize = round1Matches.size() * 2;
-		
-		roundsToSchedule = numRounds - 1;
+		int bracketSize = round1Matches.size() * 2;		
+		int roundsToSchedule = numRounds - 1;
 		
 		while (roundsToSchedule > 0)
 		{
@@ -167,6 +166,7 @@ public class Tournament {
 			roundsToSchedule--;			
 		}
 		
+		String bracketString = "";		
 		for (int i = 0; i < tournamentSchedules.size(); i++)
 		{
 			bracketString += "Round " + (i+1) + "\n\n";
@@ -196,12 +196,7 @@ public class Tournament {
 		
 		return scheduledMatches;		
 	}
-	
-
-	public int getNumRounds() {
-		return numRounds;
-	}
-	
+		
 	public void importFromFile(Path p) throws DataLoadingException
 	{
 		try
@@ -225,7 +220,7 @@ public class Tournament {
 			cachedJSON = root;
 			
 			String name = root.getString("tournamentName");
-			String scedulingMethod = root.getString("scheduleType");
+			//String scedulingMethod = root.getString("scheduleType");
 			
 			setTournamentName(name);
 			//schedulingMethod = SchedulingMethods.valueOf(scedulingMethod);
