@@ -281,8 +281,8 @@ public class Tournament {
 		{
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("matchID", m.getMatchID());
-			jsonObject.put("firstTeam", m.getFirstTeam().getTeamName());
-			jsonObject.put("secondTeam", m.getSecondTeam().getTeamName());
+			jsonObject.put("firstTeam", m.getFirstTeam().getTeamID());
+			jsonObject.put("secondTeam", m.getSecondTeam().getTeamID());
 			jsonObject.put("result", "");
 			
 			matches.put(jsonObject);
